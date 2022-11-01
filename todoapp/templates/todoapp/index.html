@@ -1,0 +1,38 @@
+{% extends 'todoapp/base.html' %}
+{% block body %}
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Add Task</h2>
+                <form class="p-3 shadow" method="POST">
+                    {% csrf_token %}
+                    <div class="from-group mt-3">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter name of task">
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" name="priority" id="priority" placeholder="Enter priority of task">
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="date" class="form-control" name="date" id="date" placeholder="Enter date">
+                    </div>
+                    <input type="submit" class="btn btn-success">
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h2>Tasks to  be completed</h2>
+                {% for task in task_list %}
+                <div class="shadow card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{task.name}}</h5>
+                        <p><b>Priority: {{task.priority}}</b></p>
+                        <p><b>{{task.date}}</b></p>
+                        <a class="btn btn-info" href="{% url 'todoapp:cbvdetail' task.id %}">Get Detail</a>
+                        <a class="btn btn-danger" href="{% url 'todoapp:delete' task.id %}">Done</a>
+                        <a class="btn btn-warning" href="{% url 'todoapp:edit' task.id%}">Edit</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

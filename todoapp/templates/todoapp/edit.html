@@ -1,0 +1,23 @@
+{% extends 'todoapp/base.html' %}
+{% block body %}
+<div class="container">
+      <div class="row">
+          <div class="col-md-6">
+              <form class="p-3 shadow" method="POST">
+                  {% csrf_token %}
+                  <div class="from-group mt-3">
+                      <input type="text" class="form-control" name="name" id="name" placeholder="Enter name of task" value="{{task.name}}">
+                  </div>
+                  <div class="form-group mt-3">
+                      <input type="text" class="form-control" name="priority" id="priority" placeholder="Enter priority of task" value="{{task.priority}}">
+                  </div>
+                  <div class="form-group mt-3">
+                      <input type="date" class="form-control" name="date" id="date" placeholder="Enter date" value="{{task.date}}">
+                  </div>
+                  <input type="submit" class="btn btn-success">
+                  <a class="btn btn-dark" href="{% url 'todoapp:index' %}">Cancel</a>
+              </form>
+          </div>
+      </div>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'todoapp/base.html' %}
+{% block body %}
+<h2>Are you sure you want to delete <i>{{task.name}}</i></h2>
+<form method="POST">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit">
+    <a class="btn btn-dark" href="{% url 'todoapp:index' %}">Cancel</a>
+</form>
+{% endblock %}
